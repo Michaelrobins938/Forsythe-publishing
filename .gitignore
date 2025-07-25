@@ -1,0 +1,35 @@
+# Artwork files (too large for GitHub)
+My artwork/
+ChatGPT Image*.png
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Generated data files (can be regenerated)
+artworks.json
+gallery-data.js
+scan-report.md
+
+# Node modules (if any)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log 

@@ -14,8 +14,6 @@ ChatGPT Image*.png
 *.webm
 
 # Generated data files (can be regenerated)
-artworks.json
-gallery-data.js
 scan-report.md
 
 # Node modules (if any)

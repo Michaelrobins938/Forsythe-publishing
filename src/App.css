@@ -1,0 +1,493 @@
+/* Alex Pardee Inspired Art Gallery Styles */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Orbitron:wght@400;700;900&family=VT323&display=swap');
+
+/* Custom properties for Alex Pardee color palette */
+:root {
+  --pardee-neon-green: #00ff41;
+  --pardee-neon-pink: #ff0080;
+  --pardee-neon-blue: #00d4ff;
+  --pardee-neon-purple: #8a2be2;
+  --pardee-neon-orange: #ff6b35;
+  --pardee-dark-bg: #0a0a0a;
+  --pardee-darker-bg: #050505;
+  --pardee-gray: #1a1a1a;
+  --pardee-light-gray: #2a2a2a;
+  --pardee-text: #ffffff;
+  --pardee-text-dim: #cccccc;
+  --pardee-accent: #ff0040;
+  --pardee-glow: 0 0 20px rgba(0, 255, 65, 0.5);
+  --pardee-glow-pink: 0 0 20px rgba(255, 0, 128, 0.5);
+  --pardee-glow-blue: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+/* Base styles with Alex Pardee aesthetic */
+body {
+  margin: 0;
+  font-family: 'Orbitron', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--pardee-dark-bg);
+  color: var(--pardee-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Dark gradient background with texture */
+.spectrum-Provider {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, var(--pardee-dark-bg) 0%, var(--pardee-darker-bg) 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Add subtle animated background elements */
+.spectrum-Provider::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, var(--pardee-neon-green), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--pardee-neon-pink), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--pardee-neon-blue), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--pardee-neon-purple), transparent);
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  opacity: 0.1;
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Enhanced card styling with horror/surreal elements */
+.spectrum-Card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--pardee-gray);
+  border: 2px solid transparent;
+  position: relative;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.spectrum-Card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spectrum-Card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--pardee-neon-green);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 255, 65, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.spectrum-Card:hover::before {
+  opacity: 1;
+}
+
+/* Custom button styles with neon glow */
+.spectrum-Button--cta {
+  background: linear-gradient(135deg, var(--pardee-neon-green) 0%, var(--pardee-neon-blue) 100%);
+  border: 2px solid var(--pardee-neon-green);
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  box-shadow: var(--pardee-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.spectrum-Button--cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.spectrum-Button--cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    var(--pardee-glow),
+    0 0 40px rgba(0, 255, 65, 0.6);
+  border-color: var(--pardee-neon-blue);
+}
+
+.spectrum-Button--cta:hover::before {
+  left: 100%;
+}
+
+.spectrum-Button--secondary {
+  background: transparent;
+  border: 2px solid var(--pardee-light-gray);
+  color: var(--pardee-text);
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.spectrum-Button--secondary:hover {
+  border-color: var(--pardee-neon-pink);
+  color: var(--pardee-neon-pink);
+  box-shadow: var(--pardee-glow-pink);
+}
+
+/* Enhanced header styling with cyberpunk elements */
+.spectrum-View--header {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--pardee-neon-green);
+  box-shadow: 0 4px 20px rgba(0, 255, 65, 0.2);
+}
+
+/* Custom floating action button with horror aesthetic */
+.spectrum-ActionButton--fab {
+  background: linear-gradient(135deg, var(--pardee-neon-pink) 0%, var(--pardee-neon-purple) 100%);
+  border: 2px solid var(--pardee-neon-pink);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: var(--pardee-glow-pink);
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.spectrum-ActionButton--fab:hover {
+  transform: scale(1.1) rotate(180deg);
+  box-shadow: 
+    var(--pardee-glow-pink),
+    0 0 50px rgba(255, 0, 128, 0.8);
+}
+
+/* Enhanced modal styling with dark theme */
+.spectrum-Modal {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--pardee-gray);
+  border: 2px solid var(--pardee-neon-blue);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    var(--pardee-glow-blue);
+}
+
+/* Custom progress circle with neon glow */
+.spectrum-ProgressCircle {
+  filter: drop-shadow(0 0 10px var(--pardee-neon-green));
+}
+
+/* Enhanced badge styling with horror elements */
+.spectrum-Badge {
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  border: 1px solid;
+}
+
+.spectrum-Badge--info {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--pardee-neon-green);
+  color: var(--pardee-neon-green);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.spectrum-Badge--secondary {
+  background: rgba(255, 0, 128, 0.1);
+  border-color: var(--pardee-neon-pink);
+  color: var(--pardee-neon-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+}
+
+.spectrum-Badge--positive {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--pardee-neon-blue);
+  color: var(--pardee-neon-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Custom grid layout with dark spacing */
+.spectrum-CardView {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  padding: 32px;
+}
+
+/* Enhanced image styling with horror effects */
+.spectrum-Image {
+  border-radius: 4px;
+  transition: all 0.4s ease;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.spectrum-Card:hover .spectrum-Image {
+  transform: scale(1.05);
+  filter: contrast(1.3) saturate(1.4) brightness(1.1);
+}
+
+/* Custom status light with neon glow */
+.spectrum-StatusLight {
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--pardee-neon-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Enhanced well styling with dark theme */
+.spectrum-Well {
+  border-radius: 8px;
+  background: var(--pardee-light-gray);
+  border: 1px solid var(--pardee-neon-purple);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom victory chart styling with dark theme */
+.victory-chart {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--pardee-gray);
+  border: 1px solid var(--pardee-neon-green);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Typography with Alex Pardee style */
+.spectrum-Heading--level1 {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  color: var(--pardee-neon-green);
+  text-shadow: 
+    0 0 10px var(--pardee-neon-green),
+    0 0 20px var(--pardee-neon-green),
+    0 0 30px var(--pardee-neon-green);
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.spectrum-Heading--level2 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  color: var(--pardee-neon-pink);
+  text-shadow: 0 0 10px var(--pardee-neon-pink);
+  letter-spacing: 2px;
+}
+
+.spectrum-Heading--level3 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  color: var(--pardee-neon-blue);
+  text-shadow: 0 0 8px var(--pardee-neon-blue);
+  letter-spacing: 1px;
+}
+
+.spectrum-Text {
+  font-family: 'VT323', monospace;
+  color: var(--pardee-text);
+  line-height: 1.6;
+}
+
+/* Responsive design with dark theme */
+@media (max-width: 768px) {
+  .spectrum-CardView {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .spectrum-ButtonGroup {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .spectrum-Heading--level1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spectrum-CardView {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .spectrum-Heading--level1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animation keyframes with horror elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%) skewX(-10deg);
+  }
+  to {
+    transform: translateX(0) skewX(0deg);
+  }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Apply animations */
+.spectrum-Card {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.spectrum-View--header {
+  animation: slideIn 0.6s ease-out;
+}
+
+.spectrum-Heading--level1:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Custom scrollbar with neon theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pardee-darker-bg);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pardee-neon-green) 0%, var(--pardee-neon-blue) 100%);
+  border-radius: 6px;
+  box-shadow: 0 0 10px var(--pardee-neon-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pardee-neon-pink) 0%, var(--pardee-neon-purple) 100%);
+  box-shadow: 0 0 15px var(--pardee-neon-pink);
+}
+
+/* Focus styles for accessibility with neon theme */
+.spectrum-Button:focus,
+.spectrum-ActionButton:focus,
+.spectrum-Card:focus {
+  outline: 2px solid var(--pardee-neon-green);
+  outline-offset: 2px;
+  box-shadow: 0 0 20px var(--pardee-neon-green);
+}
+
+/* Loading states with horror aesthetic */
+.spectrum-ProgressCircle--loading {
+  animation: spin 1s linear infinite;
+  filter: drop-shadow(0 0 15px var(--pardee-neon-green));
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Additional horror/surreal elements */
+.spectrum-View {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glitch effect for text */
+.glitch-text {
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  color: var(--pardee-neon-pink);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  color: var(--pardee-neon-blue);
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+} 

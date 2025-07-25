@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery - Micha's Creative Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tailwind CSS for Spectrum UI components -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Victory Charts -->
+    <script src="https://unpkg.com/victory@37.3.6/dist/victory.min.js"></script>
+    <!-- React for Victory -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1>Micha's Art Gallery</h1>
+                <div class="ai-status" id="aiStatus">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Agent Active</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <button class="filter-btn active" data-filter="all">All Art</button>
+                <button class="filter-btn" data-filter="images">Images</button>
+                <button class="filter-btn" data-filter="videos">Videos</button>
+                <button class="filter-btn" data-filter="analytics">Analytics</button>
+                <button class="filter-btn" data-filter="ai-insights">AI Insights</button>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section with Spectrum UI Components -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to My Creative World</h2>
+                <p>Explore a collection of digital art, illustrations, and creative expressions</p>
+                
+                <!-- AI Agent Status -->
+                <div class="ai-hero-status" id="aiHeroStatus">
+                    <div class="ai-status-card">
+                        <i class="fas fa-brain"></i>
+                        <div class="ai-status-text">
+                            <h3>AI Gallery Agent</h3>
+                            <p>Automatically organizing and categorizing your art collection</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spectrum UI Animated Button -->
+                <div class="mt-8">
+                    <button class="spectrum-btn" id="exploreBtn">
+                        <span class="spectrum-btn-content">
+                            <span class="spectrum-btn-text">Explore Gallery</span>
+                            <span class="spectrum-btn-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Insights Section -->
+        <section class="ai-insights-section" id="aiInsightsSection" style="display: none;">
+            <div class="ai-insights-container">
+                <h3 class="ai-insights-title">AI Gallery Insights</h3>
+                <div class="ai-insights-grid">
+                    <div class="ai-insights-card">
+                        <h4>Collection Overview</h4>
+                        <div id="collectionOverview" class="ai-insights-content"></div>
+                    </div>
+                    <div class="ai-insights-card">
+                        <h4>Top Performing Artworks</h4>
+                        <div id="topPerforming" class="ai-insights-content"></div>
+                    </div>
+                    <div class="ai-insights-card">
+                        <h4>Category Distribution</h4>
+                        <div id="categoryDistribution" class="ai-insights-content"></div>
+                    </div>
+                    <div class="ai-insights-card">
+                        <h4>AI Recommendations</h4>
+                        <div id="aiRecommendations" class="ai-insights-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section with Victory Charts -->
+        <section class="analytics-section" id="analyticsSection" style="display: none;">
+            <div class="analytics-container">
+                <h3 class="analytics-title">Gallery Analytics</h3>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h4>Artwork Distribution</h4>
+                        <div id="pieChart" class="chart-container"></div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>Monthly Creations</h4>
+                        <div id="lineChart" class="chart-container"></div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>File Size Distribution</h4>
+                        <div id="barChart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Spectrum UI Floating Action Button -->
+        <div class="fab-container">
+            <button class="fab" id="fabBtn">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="fab-menu" id="fabMenu">
+                <button class="fab-item" data-action="upload">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Art</span>
+                </button>
+                <button class="fab-item" data-action="share">
+                    <i class="fas fa-share"></i>
+                    <span>Share Gallery</span>
+                </button>
+                <button class="fab-item" data-action="download">
+                    <i class="fas fa-download"></i>
+                    <span>Download All</span>
+                </button>
+                <button class="fab-item" data-action="ai-refresh">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Refresh</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <button class="lightbox-close" id="lightboxClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Loading...</div>
+                </div>
+                
+                <div class="lightbox-media" id="lightboxMedia"></div>
+                <div class="lightbox-info">
+                    <h3 class="lightbox-title" id="lightboxTitle"></h3>
+                    <p class="lightbox-description" id="lightboxDescription"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Modal -->
+        <div class="modal" id="uploadModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Upload New Artwork</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop files here or click to select</p>
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+                    </div>
+                    <div class="upload-preview" id="uploadPreview"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="cancelUpload">Cancel</button>
+                    <button class="btn-primary" id="confirmUpload">Upload Artwork</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div class="toast-container" id="toastContainer"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Micha's Art Gallery. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="ai-gallery-agent.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

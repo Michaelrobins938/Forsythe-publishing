@@ -1,0 +1,12 @@
+{
+  "name": "micha-art-gallery",
+  "version": "1.0.0",
+  "description": "Micha's Art Gallery - A beautiful showcase of digital artwork",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'This is a static site. Open index.html in your browser.'"
+  },
+  "keywords": ["art", "gallery", "portfolio", "static"],
+  "author": "Micha",
+  "license": "MIT"
+} 
